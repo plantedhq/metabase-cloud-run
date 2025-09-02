@@ -51,11 +51,6 @@ jobs:
       - name: "Publish Image to Container Registry"
         run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} --all-tags
 
-      - name: "Build Container Image"
-        run: |
-          docker build . -t $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }}
-          docker tag $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:latest
-
       - name: "Publish Image to Container Registry"
         run: |
           docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }}
@@ -65,7 +60,7 @@ jobs:
         run: |
           gcloud run deploy $CLOUD_RUN_SERVICE_NAME \
             --project $GCP_PROJECT \
-            --image $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} \
+            --image $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:latest \
             --region $CLOUD_RUN_REGION \
             --cpu $CLOUD_RUN_CPU \
             --memory $CLOUD_RUN_MEMORY \
