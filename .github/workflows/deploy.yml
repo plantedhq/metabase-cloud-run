@@ -43,10 +43,13 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: "Build Container Image"
-        run: docker build . -t $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }}
+        run: docker build . -t $REGISTRY_IMAGE_NAME:${{ github.sha }}
+
+      - name: "Tag Image as Latest"
+        run: docker tag $REGISTRY_IMAGE_NAME:${{ github.sha }} $REGISTRY_IMAGE_NAME:latest
 
       - name: "Publish Image to Container Registry"
-        run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }}
+        run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} --all-tags
 
       - name: "Build Container Image"
         run: |
