@@ -80,6 +80,7 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --port 3000 \
+            --add-cloudsql-instances=tools-431609:europe-west3:metabase \
             --set-env-vars="JAVA_OPTS=-Xmx4096m" \
             --set-env-vars="MB_DB_TYPE=$MB_DB_TYPE" \
             --set-env-vars="MB_DB_HOST=$MB_DB_HOST" \
