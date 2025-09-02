@@ -10,8 +10,8 @@ on:
       - main
 
 env:
-  REGISTRY_HOSTNAME: europe-west3-docker.pkg.dev
-  REGISTRY_FOLDER: artifacts-428913
+  REGISTRY_HOSTNAME: europe-west3-docker.pkg.dev/artifacts-428913
+  REGISTRY_FOLDER: tools
   REGISTRY_IMAGE_NAME: ${{ github.event.repository.name }}
   GCP_PROJECT: tools-431609
   CLOUD_RUN_SERVICE_NAME: ${{ github.event.repository.name }}
