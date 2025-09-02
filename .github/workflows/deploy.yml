@@ -49,7 +49,7 @@ jobs:
         run: docker tag $REGISTRY_IMAGE_NAME:${{ github.sha }} $REGISTRY_IMAGE_NAME:latest
 
       - name: "Publish Image to Container Registry"
-        run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} --all-tags
+        run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME --all-tags
 
       - name: "Deploy Image on Cloud Run"
         run: |
