@@ -51,11 +51,6 @@ jobs:
       - name: "Publish Image to Container Registry"
         run: docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }} --all-tags
 
-      - name: "Publish Image to Container Registry"
-        run: |
-          docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:${{ github.sha }}
-          docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:latest
-
       - name: "Deploy Image on Cloud Run"
         run: |
           gcloud run deploy $CLOUD_RUN_SERVICE_NAME \
