@@ -95,9 +95,11 @@ jobs:
         run: |
           gcloud scheduler jobs delete metabase-keep-alive \
             --project $GCP_PROJECT \
+            --location $CLOUD_RUN_REGION \
             --quiet || true
           gcloud scheduler jobs create http metabase-keep-alive \
             --project $GCP_PROJECT \
+            --location $CLOUD_RUN_REGION \
             --schedule="*/5 * * * *" \
             --http-method="get" \
             --uri="$MB_HOST"
