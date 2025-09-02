@@ -89,6 +89,8 @@ jobs:
             --set-env-vars="MB_DB_PASS=$MB_DB_PASS" \
 
       - name: "Create Keep Alive"
+        env:
+          MB_HOST: ${{ vars.MB_URL }}
         run: |
           gcloud scheduler jobs delete metabase-keep-alive \
             --project $GCP_PROJECT \
@@ -101,6 +103,8 @@ jobs:
 
       - name: "Check Container Ready"
         timeout-minutes: 10
+        env:
+          MB_HOST: ${{ vars.MB_URL }}
         run: |
           while [ "$(curl $MB_HOST/api/health)" != "{\"status\":\"ok\"}" ]; \
             do curl -s -o /dev/null $MB_HOST; \
