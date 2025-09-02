@@ -60,6 +60,13 @@ jobs:
           docker push $REGISTRY_HOSTNAME/$REGISTRY_FOLDER/$REGISTRY_IMAGE_NAME:latest
 
       - name: "Deploy Image on Cloud Run"
+        env:
+          MB_DB_TYPE: ${{ vars.MB_DB_TYPE }}
+          MB_DB_HOST: ${{ vars.MB_DB_HOST }}
+          MB_DB_PORT: ${{ vars.MB_DB_PORT }}
+          MB_DB_DBNAME: ${{ vars.MB_DB_DBNAME }}
+          MB_DB_USER: ${{ vars.MB_DB_USER }}
+          MB_DB_PASS: ${{ secrets.MB_DB_PASS }}
         run: |
           gcloud run deploy $CLOUD_RUN_SERVICE_NAME \
             --project $GCP_PROJECT \
