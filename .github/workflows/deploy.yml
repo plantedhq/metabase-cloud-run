@@ -14,8 +14,8 @@ env:
   REGISTRY_FOLDER: tools
   REGISTRY_IMAGE_NAME: ${{ github.event.repository.name }}
   GCP_PROJECT: tools-431609
-  CLOUD_RUN_SERVICE_NAME: ${{ github.event.repository.name }}
-  CLOUD_RUN_REGION: europe-north1
+  CLOUD_RUN_SERVICE_NAME: metabase
+  CLOUD_RUN_REGION: europe-west3
   CLOUD_RUN_CPU: 1
   CLOUD_RUN_MEMORY: 4Gi
   CLOUD_RUN_TIMEOUT: 120s
